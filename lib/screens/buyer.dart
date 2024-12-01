@@ -10,7 +10,7 @@ class BuyerPage extends StatefulWidget {
   @override
   State<BuyerPage> createState() => _BuyerPageState();
 }
-
+//bottom dashboard
 class _BuyerPageState extends State<BuyerPage> {
   int _currentIndex = 0;
   final List<CartItem> cartItems = [];
@@ -99,14 +99,14 @@ class ProductListPage extends StatefulWidget {
   @override
   State<ProductListPage> createState() => _ProductListPageState();
 }
-
+//list of products
 class _ProductListPageState extends State<ProductListPage> {
   final List<Map<String, dynamic>> products = [
     {'name': 'Tomatoes', 'price': 20, 'quantity': 50, 'location': 'Farm A', 'category': 'Vegetables'},
     {'name': 'Apples', 'price': 50, 'quantity': 30, 'location': 'Farm B', 'category': 'Fruits'},
     {'name': 'Wheat Seeds', 'price': 100, 'quantity': 10, 'location': 'Farm C', 'category': 'Seeds'},
   ];
-
+  //variables for sorting and filtering
   String selectedCategory = 'All';
   List<String> categories = ['All', 'Vegetables', 'Fruits', 'Seeds'];
 
@@ -118,15 +118,17 @@ class _ProductListPageState extends State<ProductListPage> {
   String sortOrder = 'Ascending';
   List<String> sortOptions = ['Ascending', 'Descending'];
 
+  //sorting/filtering implementation
   @override
   Widget build(BuildContext context) {
+    //filtering
     List<Map<String, dynamic>> filteredProducts = products.where((product) {
       bool matchesCategory = selectedCategory == 'All' || product['category'] == selectedCategory;
       bool matchesPrice = product['price'] >= minPrice && product['price'] <= maxPrice;
       bool matchesLocation = selectedLocation == 'All' || product['location'] == selectedLocation;
       return matchesCategory && matchesPrice && matchesLocation;
     }).toList();
-
+    //sorting
     filteredProducts.sort((a, b) {
       if (sortOrder == 'Ascending') {
         return a['price'].compareTo(b['price']);
@@ -141,6 +143,7 @@ class _ProductListPageState extends State<ProductListPage> {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
+              //menu for category filtering
               DropdownButton<String>(
                 value: selectedCategory,
                 items: categories.map((category) {
@@ -153,6 +156,7 @@ class _ProductListPageState extends State<ProductListPage> {
                 },
               ),
               Spacer(),
+              //menu for location filtering
               DropdownButton<String>(
                 value: selectedLocation,
                 items: locations.map((location) {
@@ -167,6 +171,7 @@ class _ProductListPageState extends State<ProductListPage> {
             ],
           ),
         ),
+        //slider for sorting by price
         RangeSlider(
           values: RangeValues(minPrice, maxPrice),
           min: 0,
@@ -191,6 +196,7 @@ class _ProductListPageState extends State<ProductListPage> {
             });
           },
         ),
+        //list of products
         Expanded(
           child: ListView.builder(
             itemCount: filteredProducts.length,

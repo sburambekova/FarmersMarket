@@ -21,6 +21,7 @@ class _EditProductPageState extends State<EditProductPage> {
   List<String> categories = ['Vegetables', 'Fruits', 'Seeds'];
 
   @override
+  //controllers for editing product info
   void initState() {
     super.initState();
     nameController = TextEditingController(text: widget.product['name']);
@@ -39,11 +40,13 @@ class _EditProductPageState extends State<EditProductPage> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            //edit name of the product
             TextFormField(
               controller: nameController,
               decoration: const InputDecoration(labelText: 'Product Name'),
               validator: (value) => value!.isEmpty ? 'Enter product name' : null,
             ),
+            //edit category of the product
             DropdownButtonFormField(
               value: category,
               items: categories.map((cat) {
@@ -52,23 +55,27 @@ class _EditProductPageState extends State<EditProductPage> {
               onChanged: (value) => setState(() => category = value!),
               decoration: const InputDecoration(labelText: 'Category'),
             ),
+            //edit price of the product
             TextFormField(
               controller: priceController,
               decoration: const InputDecoration(labelText: 'Price'),
               keyboardType: TextInputType.number,
               validator: (value) => value!.isEmpty ? 'Enter price' : null,
             ),
+            //edit quantity of the product
             TextFormField(
               controller: quantityController,
               decoration: const InputDecoration(labelText: 'Quantity'),
               keyboardType: TextInputType.number,
               validator: (value) => value!.isEmpty ? 'Enter quantity' : null,
             ),
+            //edit product description
             TextFormField(
               controller: descriptionController,
               decoration: const InputDecoration(labelText: 'Description'),
               maxLines: 3,
             ),
+            //button to save changes
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {

@@ -10,7 +10,7 @@ class FarmerRegisterPage extends StatefulWidget {
 }
 
 class _FarmerRegisterPageState extends State<FarmerRegisterPage> {
-  //create the controllers
+  //controllers for registration info
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
@@ -32,6 +32,7 @@ class _FarmerRegisterPageState extends State<FarmerRegisterPage> {
           child: ListView(
             shrinkWrap: true,
             children: [
+              //username text field
               const Text('Username'),
               const SizedBox(
                 height: 5,
@@ -47,6 +48,7 @@ class _FarmerRegisterPageState extends State<FarmerRegisterPage> {
               const SizedBox(
                 height: 10,
               ),
+              //first name text field
               const Text('First Name'),
               const SizedBox(
                 height: 5,
@@ -61,6 +63,7 @@ class _FarmerRegisterPageState extends State<FarmerRegisterPage> {
               const SizedBox(
                 height: 10,
               ),
+              //middle name text field
               const Text('Middle name'),
               const SizedBox(
                 height: 5,
@@ -75,6 +78,7 @@ class _FarmerRegisterPageState extends State<FarmerRegisterPage> {
               const SizedBox(
                 height: 10,
               ),
+              //last name text field
               const Text('Last name'),
               const SizedBox(
                 height: 5,
@@ -90,6 +94,7 @@ class _FarmerRegisterPageState extends State<FarmerRegisterPage> {
               const SizedBox(
                 height: 10,
               ),
+              //password text field
               const Text('Password'),
               const SizedBox(
                 height: 5,
@@ -104,6 +109,7 @@ class _FarmerRegisterPageState extends State<FarmerRegisterPage> {
               const SizedBox(
                 height: 10,
               ),
+              //phone number text field
               const Text('Phone number'),
               const SizedBox(
                 height: 5,
@@ -118,6 +124,7 @@ class _FarmerRegisterPageState extends State<FarmerRegisterPage> {
               const SizedBox(
                 height: 10,
               ),
+              //e-mail text field
               const Text('Email'),
               const SizedBox(
                 height: 5,

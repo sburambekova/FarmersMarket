@@ -47,11 +47,11 @@ class LoginPageState extends State<LoginPage> {
       "https://farmersmarketapi-e0c4d5dpc7e7fwbd.northeurope-01.azurewebsites.net/api/v1/Authenticate/login";
 
   Future<void> login() async {
-    // Get the values entered by the user
+    //get the values entered by the user
     String username = nameController.text;
     String password = passwordController.text;
 
-    // Check if the fields are not empty
+    //check for empty fields
     if (username.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Please enter both username and password')),
@@ -59,13 +59,13 @@ class LoginPageState extends State<LoginPage> {
       return;
     }
 
-    // Create the request payload
+    //create the request payload
     Map<String, String> body = {
       'username': username,
       'password': password,
     };
 
-    // Send POST request to the API
+    //send request to the API
     try {
       final response = await http.post(
         Uri.parse(apiUrl),
@@ -73,14 +73,14 @@ class LoginPageState extends State<LoginPage> {
         headers: {'Content-Type': 'application/json', 'accept': '*/*'},
       );
 
-      // Check if the response is successful
+      //Check if the response is successful
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         print('Response Data: $data'); // Debugging
 
-        // Check if the token exists in the response to validate success
+        //check if the token exists
         if (data['token'] != null) {
-          // If token exists, consider login successful
+          //if token exists, consider login successful
           if (data['roles'][0] == 'Farmer') {
             Navigator.pushReplacement(
               context,
@@ -96,19 +96,19 @@ class LoginPageState extends State<LoginPage> {
             );
           }
         } else {
-          // If token doesn't exist, show error
+          //if token doesn't exist, show error
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('Invalid credentials')),
           );
         }
       } else {
-        // Handle server error or failure
+        //handle server error or failure
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Failed to connect to the server')),
         );
       }
     } catch (e) {
-      // Handle any errors (e.g., network errors)
+      //handle any errors (e.g., network errors)
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: ${e.toString()}')),
       );

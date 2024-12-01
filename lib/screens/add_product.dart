@@ -14,7 +14,7 @@ class _AddProductPageState extends State<AddProductPage> {
   String category = 'Vegetables';
   List<String> categories = ['Vegetables', 'Fruits', 'Seeds'];
 
-  // Controllers
+  // Controllers for product info
   TextEditingController nameController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
@@ -29,11 +29,13 @@ class _AddProductPageState extends State<AddProductPage> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            //name of the product
             TextFormField(
               controller: nameController,
               decoration: const InputDecoration(labelText: 'Product Name'),
               validator: (value) => value!.isEmpty ? 'Enter product name' : null,
             ),
+            //category of the product
             DropdownButtonFormField(
               value: category,
               items: categories.map((cat) {
@@ -42,23 +44,27 @@ class _AddProductPageState extends State<AddProductPage> {
               onChanged: (value) => setState(() => category = value!),
               decoration: const InputDecoration(labelText: 'Category'),
             ),
+            //price of the product
             TextFormField(
               controller: priceController,
               decoration: const InputDecoration(labelText: 'Price'),
               keyboardType: TextInputType.number,
               validator: (value) => value!.isEmpty ? 'Enter price' : null,
             ),
+            //quantity of the product
             TextFormField(
               controller: quantityController,
               decoration: const InputDecoration(labelText: 'Quantity'),
               keyboardType: TextInputType.number,
               validator: (value) => value!.isEmpty ? 'Enter quantity' : null,
             ),
+            //description of the product
             TextFormField(
               controller: descriptionController,
               decoration: const InputDecoration(labelText: 'Description'),
               maxLines: 3,
             ),
+            //button to add
             ElevatedButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {

@@ -20,6 +20,7 @@ class _FarmerDashboardState extends State<FarmerDashboard> {
     return Scaffold(
       appBar: AppBar(title: const Text('Farmer Dashboard')),
       body: ListView.builder(
+        //list of products:
         itemCount: products.length,
         itemBuilder: (context, index) {
           final product = products[index];
@@ -27,6 +28,7 @@ class _FarmerDashboardState extends State<FarmerDashboard> {
             title: Text(product['name']),
             subtitle: Text('Category: ${product['category']} | Quantity: ${product['quantity']}'),
             trailing: Text('\$${product['price']}'),
+            //function to edit the product info
             onTap: () {
               Navigator.push(
                 context,
@@ -35,7 +37,7 @@ class _FarmerDashboardState extends State<FarmerDashboard> {
                     product: product,
                     onProductUpdated: (updatedProduct) {
                       setState(() {
-                        products[index] = updatedProduct; // Update the product in the list
+                        products[index] = updatedProduct; //update the product
                       });
                     },
                   ),
@@ -45,6 +47,7 @@ class _FarmerDashboardState extends State<FarmerDashboard> {
           );
         },
       ),
+      //button to add products
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
@@ -53,7 +56,7 @@ class _FarmerDashboardState extends State<FarmerDashboard> {
               builder: (context) => AddProductPage(
                 onProductAdded: (newProduct) {
                   setState(() {
-                    products.add(newProduct); // Add the new product to the list
+                    products.add(newProduct); //add a new product to the list
                   });
                 },
               ),
