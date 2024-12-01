@@ -1,5 +1,6 @@
 import 'package:market/main.dart';
 import 'package:flutter/material.dart';
+import 'package:market/screens/farmer.dart';
 
 class FarmerRegisterPage extends StatefulWidget {
   const FarmerRegisterPage({super.key});
@@ -13,7 +14,9 @@ class _FarmerRegisterPageState extends State<FarmerRegisterPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
-  TextEditingController addressController = TextEditingController();
+  TextEditingController middlenameController = TextEditingController();
+  TextEditingController firstnameController = TextEditingController();
+  TextEditingController lastnameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
@@ -44,15 +47,43 @@ class _FarmerRegisterPageState extends State<FarmerRegisterPage> {
               const SizedBox(
                 height: 10,
               ),
-              const Text('Email'),
+              const Text('First Name'),
               const SizedBox(
                 height: 5,
               ),
               TextField(
-                controller: emailController,
+                controller: firstnameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'Enter Email',
+                  hintText: 'Enter First Name',
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text('Middle name'),
+              const SizedBox(
+                height: 5,
+              ),
+              TextField(
+                controller: middlenameController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Enter middle name',
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text('Last name'),
+              const SizedBox(
+                height: 5,
+              ),
+              TextField(
+                controller: lastnameController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Enter Last Name',
                 ),
               ),
               //some space between email and mobile
@@ -73,6 +104,34 @@ class _FarmerRegisterPageState extends State<FarmerRegisterPage> {
               const SizedBox(
                 height: 10,
               ),
+              const Text('Phone number'),
+              const SizedBox(
+                height: 5,
+              ),
+              TextField(
+                controller: mobileController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Enter Phone Number',
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Text('Email'),
+              const SizedBox(
+                height: 5,
+              ),
+              TextField(
+                controller: emailController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  hintText: 'Enter Email',
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               //create button for register
               ElevatedButton(
                 onPressed: () {
@@ -80,6 +139,11 @@ class _FarmerRegisterPageState extends State<FarmerRegisterPage> {
                   print(nameController.text);
                   print(emailController.text);
                   print(passwordController.text);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (
+                        context) => const FarmerDashboard()), // Or FarmerDashboard(), depending on your response
+                  );
                 },
                 child: const Text(
                   'Register',

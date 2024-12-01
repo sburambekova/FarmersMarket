@@ -1,5 +1,6 @@
 import 'package:market/main.dart';
 import 'package:flutter/material.dart';
+import 'package:market/screens/buyer.dart';
 
 class BuyerRegisterPage extends StatefulWidget {
   const BuyerRegisterPage({super.key});
@@ -80,6 +81,11 @@ class _BuyerRegisterPageState extends State<BuyerRegisterPage> {
                   print(nameController.text);
                   print(emailController.text);
                   print(passwordController.text);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (
+                        context) => const BuyerPage()), // Or FarmerDashboard(), depending on your response
+                  );
                 },
                 child: const Text(
                   'Register',
