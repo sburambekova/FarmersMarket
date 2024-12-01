@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'add_product.dart';
+import 'edit_product.dart';
 
 class FarmerDashboard extends StatefulWidget {
   const FarmerDashboard({super.key});
@@ -26,6 +27,21 @@ class _FarmerDashboardState extends State<FarmerDashboard> {
             title: Text(product['name']),
             subtitle: Text('Category: ${product['category']} | Quantity: ${product['quantity']}'),
             trailing: Text('\$${product['price']}'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditProductPage(
+                    product: product,
+                    onProductUpdated: (updatedProduct) {
+                      setState(() {
+                        products[index] = updatedProduct; // Update the product in the list
+                      });
+                    },
+                  ),
+                ),
+              );
+            },
           );
         },
       ),
